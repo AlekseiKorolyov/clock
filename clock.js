@@ -1,25 +1,28 @@
 class Clock {
-    constructor(elId) {
-        this.elementId =  elId;
+    constructor(id) {
+        this.elementId = id;
         // this.offset = offset;
         // this.timeZone = timeZone;
     }
-    
-    time() {
+
+
+    getTime() {
         let date = new Date();
-        let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-        let min = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        let sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-        
-        document.getElementById(this.elementId).innerHTML = `${hours}:${min}:${sec}`;
-        
+        let h = date.getUTCHours() < 10 ? "0" + date.getUTCHours() : date.getUTCHours();
+        let m = date.getUTCMinutes() < 10 ? "0" + date.getUTCMinutes() : date.getUTCMinutes();
+        let s = date.getUTCSeconds() < 10 ? "0" + date.getUTCSeconds() : date.getUTCSeconds();
+
+         document.getElementById(this.elementId).innerHTML = `${h}:${m}:${s}`;
     }
-    
+
+
+    start() {
+        this.getTime();
+        setInterval(() => this.getTime(), 1000);
+    }
 }
 
 const clock1 = new Clock("clock1");
-// let clock2 = new Clock("clock2");
-clock1.time();
-// clock2.time();
-setInterval(time, 1000);
-// setInterval(clock2.time, 1000);
+const clock2 = new Clock("clock2");
+clock1.start();
+clock2.start();
