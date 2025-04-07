@@ -3,10 +3,11 @@ class Clock {
         this.elementId = id;
         // this.offset = offset;
         // this.timeZone = timeZone;
+        this.start();
     }
 
 
-    getTime() {
+    tiktak() {
         let date = new Date();
         let h = date.getUTCHours() < 10 ? "0" + date.getUTCHours() : date.getUTCHours();
         let m = date.getUTCMinutes() < 10 ? "0" + date.getUTCMinutes() : date.getUTCMinutes();
@@ -17,12 +18,11 @@ class Clock {
 
 
     start() {
-        this.getTime();
-        setInterval(() => this.getTime(), 1000);
+        this.tiktak();
+        setInterval(() => this.tiktak(), 1000);
     }
 }
 
 const clock1 = new Clock("clock1");
 const clock2 = new Clock("clock2");
-clock1.start();
-clock2.start();
+
